@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Royale — 3 to 4 Players</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-shapes"></div>
+
+  <main class="container">
+    <!-- SETUP SCREEN -->
+    <section id="setup" class="card setup-card">
+      <div class="brand">🎲 DICE ROYALE</div>
+      <h1>Roll. Score. <span>Conquer.</span></h1>
+      <p class="subtitle">A fast and fun multiplayer dice battle.</p>
+
+      <div class="setup-panel">
+        <div class="setup-group">
+          <label>Number of players</label>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="selectPlayers(3)" id="players3">3 Players</button>
+            <button class="choice-btn" onclick="selectPlayers(4)" id="players4">4 Players</button>
+          </div>
+        </div>
+
+        <div class="setup-group">
+          <label>Number of rounds</label>
+          <div class="choice-row rounds">
+            <button class="choice-btn round-btn" onclick="selectRounds(3)">3</button>
+            <button class="choice-btn round-btn selected" onclick="selectRounds(5)">5</button>
+            <button class="choice-btn round-btn" onclick="selectRounds(10)">10</button>
+          </div>
+        </div>
+
+        <div id="nameInputs" class="name-inputs"></div>
+
+        <button class="primary-btn start-btn" onclick="startGame()">
+          <span>Start Battle</span> ⚡
+        </button>
+      </div>
+
+      <div class="rules">
+        <div>🎯 <b>Highest score wins</b></div>
+        <div>🎲 <b>One roll per turn</b></div>
+        <div>🏆 <b>Beat your rivals</b></div>
+      </div>
+    </section>
+
+    <!-- GAME SCREEN -->
+    <section id="game" class="card game-card hidden">
+      <header class="game-header">
+        <div>
+          <div class="brand">🎲 DICE ROYALE</div>
+          <h2>Battle Arena</h2>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleSound()" id="soundBtn" title="Toggle sound">🔊</button>
+          <button class="restart-btn" onclick="resetGame()">↩ New Game</button>
+        </div>
+      </header>
+
+      <div class="status-row">
+        <div class="round-info">
+          <span>ROUND</span>
+          <strong id="round">1 / 5</strong>
+        </div>
+        <div class="turn-pill" id="turn">Player 1's Turn</div>
+        <div class="round-info right">
+          <span>TURN</span>
+          <strong id="turnNumber">1</strong>
+        </div>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="players" class="players"></div>
+
+      <div class="arena">
+        <div class="streak" id="streak"></div>
+        <div id="dice" class="dice" aria-label="Dice">⚀</div>
+        <div id="rollNumber" class="roll-result">Ready?</div>
+        <p id="message">Player 1, roll the dice!</p>
+        <button id="rollBtn" class="roll-btn" onclick="rollDice()">
+          <span class="roll-icon">🎲</span> ROLL DICE
+        </button>
+      </div>
+
+      <div class="live-stats">
+        <div><span>Highest</span><b id="highestScore">0</b></div>
+        <div><span>Last Roll</span><b id="lastRoll">—</b></div>
+        <div><span>Leader</span><b id="leaderName">—</b></div>
+      </div>
+    </section>
+
+    <!-- WINNER SCREEN -->
+    <section id="winner" class="card winner-card hidden">
+      <div class="confetti" id="confetti"></div>
+      <div class="trophy">🏆</div>
+      <div class="brand">BATTLE COMPLETE</div>
+      <h1 id="winnerText">Winner!</h1>
+      <p id="winnerSubtext"></p>
+
+      <div id="finalScores" class="final-scores"></div>
+
+      <div class="winner-actions">
+        <button class="primary-btn" onclick="playAgain()">⚡ Play Again</button>
+        <button class="secondary-btn" onclick="resetGame()">⌂ Main Menu</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
